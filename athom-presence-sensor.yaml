@@ -27,9 +27,6 @@ logger:
 
 api:
 
-ota:
-  - platform: esphome
-
 mdns:
   disabled: false
 
@@ -100,7 +97,6 @@ binary_sensor:
     device_class: motion
     on_press:
       then:
-        - light.turn_on: led
 
   - platform: gpio
     pin:
@@ -115,7 +111,6 @@ binary_sensor:
     device_class: motion
     on_release:
       then:
-        - light.turn_off: led
 
   - platform: template
     name: "Occupancy"
