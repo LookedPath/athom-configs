@@ -18,15 +18,15 @@ substitutions:
   # Set the duration between the sntp service polling ntp.org servers for an update
   sntp_update_interval: 6h
   # Network time servers for your region, enter from lowest to highest priority. To use local servers update as per zones or countries at: https://www.ntppool.org/zone/@
-  sntp_server_1: "0.pool.ntp.org"
-  sntp_server_2: "1.pool.ntp.org"
-  sntp_server_3: "2.pool.ntp.org"
+  sntp_server_1: "0.it.pool.ntp.org"
+  sntp_server_2: "1.it.pool.ntp.org"
+  sntp_server_3: "2.it.pool.ntp.org"
   # Enables faster network connections, with last connected SSID being connected to and no full scan for SSID being undertaken
   wifi_fast_connect: "false"
   # Define logging level: NONE, ERROR, WARN, INFO, DEBUG (Default), VERBOSE, VERY_VERBOSE
   log_level: "DEBUG"
   # Enable or disable the use of IPv6 networking on the device
-  ipv6_enable: "false"
+  ipv6_enable: "true"
 
 esphome:
   name: "${name}"
@@ -59,15 +59,10 @@ api:
 ota:
   - platform: esphome
 
-web_server:
-  port: 80
-
 network:
   enable_ipv6: ${ipv6_enable}
 
 wifi:
-  # This spawns an AP with the device name and mac address with no password.
-  ap: {}
   # Allow rapid re-connection to previously connect WiFi SSID, skipping scan of all SSID
   fast_connect: "${wifi_fast_connect}"
   # Define dns domain / suffix to add to hostname
@@ -76,10 +71,8 @@ wifi:
 mdns:
   disabled: false
 
-captive_portal:
-
 dashboard_import:
-  package_import_url: github://athom-tech/athom-configs/athom-presence-sensor.yaml
+  package_import_url: github://LookedPath/athom-configs/athom-presence-sensor.yaml
 
 light:
   - platform: status_led
